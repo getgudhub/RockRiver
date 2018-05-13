@@ -1,0 +1,44 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+#bgTop{
+	-fx-background-image: url("../../src/view/logo.jpg");
+	-fx-background-position: center;
+	-fx-background-color:black;
+	-fx-background-repeat: no-repeat;
+	}
+#grid2{
+	-fx-background-color:linear-gradient(grey, white);	
+	-fx-padding: 5 10 10 10;
+}
+#grid{
+	-fx-background-image: url("../../src/view/rr.jpg");
+	-fx-background-position: center;
+	-fx-background-repeat: no-repeat;
+	-fx-background-color:black;	
+	-fx-padding: 5 10 10 10;
+}
+#forLoginGP{
+	-fx-background-color:black;
+	-fx-padding:15;
+}
+#gridDashboard{
+	-fx-background-color:black;
+}	
+#loginButtons{
+	-fx-padding:5 10 10 10;
+	-fx-background-insets:10 10 10 10;
+}
+#txt{
+	-fx-font-weight: bold;
+}
+#buttons{
+	-fx-border-radius:20px;
+	-fx-background-color:linear-gradient(lightblue, grey);
+}
+#user{
+	-fx-color:white;
+	-fx-font-size:16px;
+}
+#userInfo{
+	-fx-background-color:linear-gradient(lightblue, grey);
+}
