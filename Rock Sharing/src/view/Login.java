@@ -117,9 +117,9 @@ public class Login{
 			loginButton.setOnAction( e->{
 				UsersDAO userDao = new UsersDAO();
 				User user = userDao.getUser(
-						nameInput.getText().toString() ,passInput.getText().toString());
+						nameInput.getText().toString(), passInput.getText().toString());
 				
-				if ((nameInput.getText().isEmpty()) ||( passInput.getText().isEmpty())){
+				if ((nameInput.getText().isEmpty()) || ( passInput.getText().isEmpty())){
 					message.setText("Please write in your crediantials");
 					message.setFont(Font.font("Verdana", FontWeight.BOLD, 16));
 					message.setTextFill(Color.RED);

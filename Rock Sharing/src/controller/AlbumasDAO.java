@@ -20,22 +20,23 @@ public class AlbumasDAO {
 	
 	public void addAlbum(Albumas album){
 		try{
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/duombaze", "root", "");
-		PreparedStatement pst = con.prepareStatement(query);
-		pst.setString(1, album.getUsername());
-		pst.setString(2, album.getTitle());
-		pst.setString(3, album.getArtist());
-		pst.setInt(4, album.getSongs());
-		pst.setString(5, album.getGenre());
-		pst.setInt(6, album.getYear());
-		pst.setInt(7, album.getRating());
-		pst.setInt(8, album.getVotes());
-		pst.setDate(9, album.getLastUpdated());
-		pst.setString(10, album.getDownloadSite());	
-		pst.setInt(11, album.getRatingPoints());
-		pst.execute();
-		pst.close();
-		System.out.println("Successfully added an Album");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/duombaze", "root", "");
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setString(1, album.getUsername());
+			pst.setString(2, album.getTitle());
+			pst.setString(3, album.getArtist());
+			pst.setInt(4, album.getSongs());
+			pst.setString(5, album.getGenre());
+			pst.setInt(6, album.getYear());
+			pst.setInt(7, album.getRating());
+			pst.setInt(8, album.getVotes());
+			pst.setDate(9, album.getLastUpdated());
+			pst.setString(10, album.getDownloadSite());	
+			pst.setInt(11, album.getRatingPoints());
+			pst.execute();
+			pst.close();
+			con.close();
+			System.out.println("Successfully added an Album");
 		}catch (Exception e){
 			e.printStackTrace();
 			System.out.println("Failed to add");
@@ -45,11 +46,12 @@ public class AlbumasDAO {
 	public void deleteAlbum(int id, User user){
 		try{
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/duombaze", "root", "");
-		PreparedStatement pst = con.prepareStatement("DELETE FROM albumai WHERE id = ?");
-		pst.setInt(1, id);
-		pst.execute();
-		pst.close();
-		System.out.println("Successfuly deleted a Album");
+			PreparedStatement pst = con.prepareStatement("DELETE FROM albumai WHERE id = ?");
+			pst.setInt(1, id);
+			pst.execute();
+			pst.close();
+			con.close();
+			System.out.println("Successfuly deleted an Album");
 		}catch(Exception e){
 			e.printStackTrace();
 			System.out.println("Failed to delete");
@@ -60,7 +62,7 @@ public class AlbumasDAO {
 		try{
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/duombaze", "root", "");
 			PreparedStatement pst = con.prepareStatement("UPDATE albumai SET title = ?, artist = ?," +
-					"songs = ?, genre = ?, year = ?, lastUpdated = ?, downloadSite = ? WHERE id=" +album.getId() );
+					"songs = ?, genre = ?, year = ?, lastUpdated = ?, downloadSite = ? WHERE id=" + album.getId() );
 			pst.setString(1, album.getTitle());
 			pst.setString(2, album.getArtist());
 			pst.setInt(3, album.getSongs());
@@ -70,6 +72,7 @@ public class AlbumasDAO {
 			pst.setString(7, album.getDownloadSite());
 			pst.execute();
 			pst.close();
+			con.close();
 			System.out.println("Update successful");
 		}catch(Exception e){
 			e.printStackTrace();
@@ -114,7 +117,9 @@ public class AlbumasDAO {
 					rs.getString("downloadSite"),
 					rs.getInt("ratingPoints")
 				));
-			}	
+			}
+			add.close();
+			con.close();	
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -143,7 +148,8 @@ public class AlbumasDAO {
 					rs.getInt("ratingPoints")
 				));
 			}
-			
+			add.close();
+			con.close();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

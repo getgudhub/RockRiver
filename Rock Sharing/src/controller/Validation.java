@@ -19,26 +19,31 @@ public class Validation {
 		Matcher credentialsMatcher = credentialsPattern.matcher(credentials);
 		return credentialsMatcher.find();
 	}
+	
 	public static boolean isValidSongNumb(String credentials){
 		Pattern credentialsPattern = Pattern.compile(VALID_SONG_NUM_REGEX);
 		Matcher credentialsMatcher = credentialsPattern.matcher(credentials);
 		return credentialsMatcher.find();
 	}
+	
 	public static boolean isValidYear(String credentials){
 		Pattern credentialsPattern = Pattern.compile(VALID_YEAR_REGEX);
 		Matcher credentialsMatcher = credentialsPattern.matcher(credentials);
 		return credentialsMatcher.find();
 	}
+	
 	public static boolean isValidSearch(String credentials){
 		Pattern credentialsPattern = Pattern.compile(VALID_NAME_SEARCH_REGEX);
 		Matcher credentialsMatcher = credentialsPattern.matcher(credentials);
 		return credentialsMatcher.find();
 	}
+	
 	public static boolean isValidTextSize(String size){
 		Pattern sizePattern = Pattern.compile(VALID_TEXT_SIZE_REGEX);
 		Matcher sizeMatcher = sizePattern.matcher(size);
 		return sizeMatcher.find();
 	}
+	
 	public static boolean isValidID(String ID){
 		Pattern IDPattern = Pattern.compile(VALID_ID_REGEX);
 		Matcher IDMatcher = IDPattern.matcher(ID);
@@ -50,6 +55,7 @@ public class Validation {
 		Matcher credentialsMatcher = credentialsPattern.matcher(credentials);
 		return credentialsMatcher.find();
 	}
+	
 	public static boolean isValidEmail(String email){
 		Pattern emailPattern = Pattern.compile(VALID_EMAIL_ADDRESS_REGEX);
 		Matcher emailMatcher = emailPattern.matcher(email);

@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.ListIterator;
 
 import model.User;
 
@@ -21,17 +20,18 @@ public class UsersDAO {
 	
 	public void addUser(User user){
 		try{
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/duombaze", "root", "");
-		PreparedStatement pst = con.prepareStatement(query);
-		pst.setString(1, user.getUsername());
-		pst.setString(2, user.getPassword());
-		pst.setInt(3, user.getUserlevel());
-		pst.setString(4, user.getEmail());
-		pst.setDate(5, (Date) user.getTimestamp());
-		pst.setInt(6, 0);
-		pst.execute();
-		pst.close();
-		System.out.println("Successfully added the user");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/duombaze", "root", "");
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setString(1, user.getUsername());
+			pst.setString(2, user.getPassword());
+			pst.setInt(3, user.getUserlevel());
+			pst.setString(4, user.getEmail());
+			pst.setDate(5, (Date) user.getTimestamp());
+			pst.setInt(6, 0);
+			pst.execute();
+			pst.close();
+			con.close();
+			System.out.println("Successfully added the user");
 		}catch (Exception e){
 			e.printStackTrace();
 			System.out.println("Failed to add the user");
@@ -64,6 +64,8 @@ public class UsersDAO {
 								}	
 							}
 					}
+			pavad.close();
+			con.close();
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -74,15 +76,16 @@ public class UsersDAO {
 		String str = "";
 		Iterator<Integer> it = getUserVotesOn.iterator();
 		try{
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/duombaze", "root", "");
-		PreparedStatement pst = con.prepareStatement(query);
-		while(it.hasNext()) {
-			str+=it.next().toString()+" ";
-		}
-		pst.setString(1, str);
-		pst.setString(2, username);
-		pst.execute();
-		pst.close();
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/duombaze", "root", "");
+			PreparedStatement pst = con.prepareStatement(query);
+			while(it.hasNext()) {
+				str+=it.next().toString()+" ";
+			}
+			pst.setString(1, str);
+			pst.setString(2, username);
+			pst.execute();
+			pst.close();
+			con.close();
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -90,12 +93,13 @@ public class UsersDAO {
 	public void updateUserPassword(String username, String password){
 		query="Update users Set password = ?  Where username = ?";
 		try{
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/duombaze", "root", "");
-		PreparedStatement pst = con.prepareStatement(query);
-		pst.setString(1, password);
-		pst.setString(2, username);
-		pst.execute();
-		pst.close();
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/duombaze", "root", "");
+			PreparedStatement pst = con.prepareStatement(query);
+			pst.setString(1, password);
+			pst.setString(2, username);
+			pst.execute();
+			pst.close();
+			con.close();
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -109,6 +113,7 @@ public class UsersDAO {
 		pst.setString(2, username);
 		pst.execute();
 		pst.close();
+		con.close();
 		}catch (Exception e){
 			e.printStackTrace();
 		}

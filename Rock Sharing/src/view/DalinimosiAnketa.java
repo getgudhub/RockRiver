@@ -90,6 +90,7 @@ public class DalinimosiAnketa {
 	public final static int ADMIN_LEVEL = 9;
 	
 	public DalinimosiAnketa(Stage primaryStage, User user) throws Exception{
+		
 		this.bpRoot = new BorderPane();
 		if(user.getUserlevel() == ADMIN_LEVEL) {
 			this.scene = new Scene(this.bpRoot,1600,710);
@@ -113,6 +114,7 @@ public class DalinimosiAnketa {
 	
 	public void addElementsToScene(){
 		
+		//Album info field
 		idInput.setPromptText("For selecting and updating");
 		titleInput.setPromptText("For search and adding");
 		tfArtist.setPromptText("For search and adding");
@@ -138,29 +140,36 @@ public class DalinimosiAnketa {
 		lbRating.setTextFill(Color.WHITE);
 		Label lbDownloadUrl = new Label("Download URL");
 		lbDownloadUrl.setTextFill(Color.WHITE);
+		
+		//Top grid
 		Label lbUser = new Label("Logged in as: "+user.getUsername());
 		lbUser.setTextFill(Color.WHITE);
 		lbUser.setFont(Font.font("Courier New", FontWeight.BOLD, 16));
+		
+		//"User Settings" window
 		Label userInfo = new Label("Fill the fields you'd like to change");
 		userInfo.setFont(Font.font("Verdana", FontPosture.ITALIC, 22));
 		GridPane.setConstraints(userInfo, 0, 0, 3, 1);
 		Label password = new Label("Password:");
-		GridPane.setConstraints(password,  1,  2);
+		GridPane.setConstraints(password, 1, 2);
 		PasswordField passwInput = new PasswordField();
 		passwInput.setPromptText("Password");
-		GridPane.setConstraints(passwInput,  2,  2);
+		GridPane.setConstraints(passwInput, 2, 2);
 		Label passwordR = new Label("Repeat password:");
-		GridPane.setConstraints(passwordR,  1,  3);
+		GridPane.setConstraints(passwordR, 1, 3);
 		PasswordField passwInput2 = new PasswordField();
 		passwInput2.setPromptText("Password");
-		GridPane.setConstraints(passwInput2,  2,  3);
+		GridPane.setConstraints(passwInput2, 2, 3);
+		Label orLabel = new Label("And/Or:");
+		GridPane.setConstraints(orLabel, 2, 4);
 		Label eMail = new Label("Email:");
-		GridPane.setConstraints(eMail,  1,  4);
+		GridPane.setConstraints(eMail, 1, 5);
 		TextField mailInput = new TextField();
 		mailInput.setPromptText("Email");
-		GridPane.setConstraints(mailInput, 2, 4);
+		GridPane.setConstraints(mailInput, 2, 5);
 		mailInput.setPrefWidth(200);
 		
+		//Album info grid items
 		comboBoxDecade.setValue("all");
 		comboBoxDecade.setPrefWidth(250);
 		cb1.setSelected(true);
@@ -195,6 +204,7 @@ public class DalinimosiAnketa {
 		rb2.setTextFill(Color.WHITE);
 		rb3.setTextFill(Color.WHITE);
 		
+		//Album info field buttons
 		Button addBtn = new Button("Add");
 		addBtn.setMinWidth(100);
 		Button deleteBtn = new Button("Delete");
@@ -203,9 +213,9 @@ public class DalinimosiAnketa {
 		updateBtn.setMinWidth(100);
 		Button searchBtn = new Button("Search");
 		searchBtn.setMinWidth(100);
-		Button returnBtn = new Button("Refresh Table");
-		returnBtn.setMinWidth(100);
-		returnBtn.setVisible(false);
+		Button refreshBtn = new Button("Refresh Table");
+		refreshBtn.setMinWidth(100);
+		refreshBtn.setVisible(false);
 		Button showBtn = new Button("Show Mine");
 		showBtn.setMinWidth(100);
 		Button logoutBtn = new Button("Log Out");
@@ -214,28 +224,37 @@ public class DalinimosiAnketa {
 		settingsBtn.setMinWidth(100);
 		Button voteBtn = new Button("Vote");
 		voteBtn.setMinWidth(100);
+		
+		//"User Settings" window buttons
 		Button submitButton = new Button("Submit");
 		submitButton.setMinWidth(100);
-		GridPane.setConstraints(submitButton,  1,  1);
+		GridPane.setConstraints(submitButton, 1, 1);
 		submitButton.setFont(Font.font("Courier New", FontWeight.BOLD, 14));
+		Button returnButton = new Button("Return");
+		returnButton.setMinWidth(100);
+		GridPane.setConstraints(returnButton, 2, 1);
+		returnButton.setFont(Font.font("Courier New", FontWeight.BOLD, 14));
 		
+		//Top grid corner
 		GridPane userInfoGP = new GridPane();
 		userInfoGP.add(lbUser, 0, 0);
 		userInfoGP.add(logoutBtn, 0, 1);
 		userInfoGP.add(settingsBtn, 0, 2);
 		userInfoGP.setVgap(20);
 		
+		//Album info button's grid
 		GridPane buttonGP = new GridPane();
 		buttonGP.add(addBtn, 0, 0);
 		buttonGP.add(deleteBtn, 1, 0);
 		buttonGP.add(updateBtn, 0, 1);
 		buttonGP.add(searchBtn, 1, 1);
-		buttonGP.add(returnBtn, 2, 1);
+		buttonGP.add(refreshBtn, 2, 1);
 		buttonGP.add(showBtn,  2, 0);
 		buttonGP.setHgap(20);
 		buttonGP.setVgap(20);
 		buttonGP.setPadding(new Insets(10,10,20,10));
 		
+		//Shadow for buttons
 		DropShadow shadow1 = new DropShadow();
 		shadow1.setColor(Color.WHITE);
 		shadow1.setOffsetX(2);
@@ -245,6 +264,7 @@ public class DalinimosiAnketa {
 		settingsBtn.setEffect(shadow1);
 		voteBtn.setEffect(shadow1);
 		
+		//CheckBoxes grid
 		GridPane gpStyle = new GridPane();
 		gpStyle.add(cb1, 1, 1);
 		gpStyle.add(cb2, 1, 2);
@@ -260,6 +280,7 @@ public class DalinimosiAnketa {
 		gpStyle.setHgap(20);
 		gpStyle.setPrefWidth(200);
 		
+		//Voting grid
 		GridPane gpRating = new GridPane();
 		gpRating.addRow(1, rb1);
 		gpRating.addRow(2, rb2);
@@ -267,6 +288,7 @@ public class DalinimosiAnketa {
 		gpRating.setVgap(5);
 		gpRating.add(voteBtn, 2, 3);
 		
+		//Album info grid filling
 		infoGP.add(lbId, 0, 0);
 		infoGP.add(idInput, 1, 0);
 		infoGP.add(lbTitle, 0, 1);
@@ -293,7 +315,7 @@ public class DalinimosiAnketa {
 		
 		bpRoot.setCenter(infoGP);
 		
-		
+		//Top grid
 		GridPane top = new GridPane();
 		top.add(userInfoGP,0,0,4,4);
 		top.setPadding(new Insets(10,10,10,10));
@@ -301,16 +323,17 @@ public class DalinimosiAnketa {
 		top.setEffect(shadow1);
 		bpRoot.setTop(top);
 		
-		GridPane btnsGP = new GridPane();
-		btnsGP.setVgap(10);
-		btnsGP.setHgap(10);
-		btnsGP.getChildren().addAll( submitButton);
+		//"User Settings" grid
+		GridPane userBtnsGP = new GridPane();
+		userBtnsGP.setVgap(10);
+		userBtnsGP.setHgap(10);
+		userBtnsGP.getChildren().addAll(submitButton, returnButton);
 		GridPane inputGP = new GridPane();
 		inputGP.setPadding(new Insets(10,10,10,60));
 		inputGP.setVgap(10);
 		inputGP.setHgap(10);
-		inputGP.add(btnsGP, 2, 5);
-		inputGP.getChildren().addAll(password, passwInput, passwordR, passwInput2, eMail, mailInput, userInfo);	
+		inputGP.add(userBtnsGP, 2, 6);
+		inputGP.getChildren().addAll(password, passwInput, passwordR, passwInput2, orLabel, eMail, mailInput, userInfo);	
 		
 		userWindow.setScene(userScene);
 		userLayout.getChildren().addAll( inputGP);
@@ -322,8 +345,9 @@ public class DalinimosiAnketa {
 		lbUser.setId("user");
 		userLayout.setId("userInfo");
 		
-		
-		//////////////////////////////////////////////////////////////////////////////////////////////////////////TABLE
+		/*
+		 *  Table
+		 */
 		TableColumn<Albumas, String> firstCol = new TableColumn<Albumas, String>("Id");
 		firstCol.setText("Id");
 		firstCol.setPrefWidth(40);
@@ -402,19 +426,23 @@ public class DalinimosiAnketa {
 		UsersDAO uDao = new UsersDAO();
 		dao.showAlbums(data, user);
 		lentele.setItems(data);
-		lentele.setPrefHeight(410);
+		lentele.setPrefHeight(400);
 			if(user.getUserlevel() == ADMIN_LEVEL) {
 				lentele.getColumns().setAll(firstCol, extraCol, secondCol, thirdCol, fourthCol, fifthCol, sixthCol, seventhCol, eighthCol, ninthCol, tenthCol);
 			}else {
 				lentele.getColumns().setAll(firstCol, secondCol, thirdCol, fourthCol, fifthCol, sixthCol, seventhCol, eighthCol, ninthCol, tenthCol);
 			}
 		lentele.setEditable(true);
-		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// buttons
+		
+		/*
+		 * OnClick Action
+		 */
+		
 		addBtn.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				if(validation("add")==true){
-				Albumas album = new Albumas(
+					Albumas album = new Albumas(
 						user.getUsername(),
 						titleInput.getText().toString(),
 						tfArtist.getText().toString(),
@@ -425,7 +453,7 @@ public class DalinimosiAnketa {
 						updateTime(),
 					    tfDownloadUrl.getText().toString(),
 					    0
-						 );	
+					);	
 				dao.addAlbum(album);
 				data.add(album);
 				lentele.getItems().clear();
@@ -482,7 +510,7 @@ public class DalinimosiAnketa {
 						Integer.parseInt(tfYear.getText().toString()),	
 						updateTime(),
 					    tfDownloadUrl.getText().toString()
-						);
+				);
 				for(Albumas album: data) {
 					if(album.getId()==Integer.parseInt(idInput.getText().toString())){
 						if(album.getUsername().toString().equals(user.getUsername().toString()) ) {	
@@ -517,7 +545,7 @@ public class DalinimosiAnketa {
 			if(validation("search")==true) {
 				lentele.getItems().clear();
 				dao.showAlbums(data, user);
-				returnBtn.setVisible(true);
+				refreshBtn.setVisible(true);
 				ObservableList<Albumas> dataSearch =
 						FXCollections.observableArrayList();
 				dataSaved.setAll(data);
@@ -596,16 +624,16 @@ public class DalinimosiAnketa {
 			}
 		});
 		
-		returnBtn.setOnAction(e->{
+		refreshBtn.setOnAction(e->{
 			lentele.getItems().clear();
 			dao.showAlbums(data, user);
 			tfDownloadUrl.clear();
 			lbDownloadUrl.setTextFill(Color.WHITE);
-			returnBtn.setVisible(false);
+			refreshBtn.setVisible(false);
 		});
 		
 		showBtn.setOnAction(e->{
-			returnBtn.setVisible(true);
+			refreshBtn.setVisible(true);
 			lentele.getItems().clear();
 			dao.showMyAlbums(data, user);
 		});
@@ -649,7 +677,11 @@ public class DalinimosiAnketa {
 			userWindow.show();			
 		});
 		
-		submitButton.setOnAction(e->{
+		returnButton.setOnAction(e->{
+			userWindow.close();
+		});
+		
+		submitButton.setOnAction(e->{   //Submission for user private information change
 			if(!mailInput.getText().isEmpty()) {
 				if(Validation.isValidEmail(mailInput.getText().toString()) ) {
 					uDao.updateUserEmail(user.getUsername(), mailInput.getText().toString());
@@ -703,7 +735,10 @@ public class DalinimosiAnketa {
 			}
 		});
 	}
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// end of addElementsToScene()
+	
+	/*
+	 *  Validation
+	 */
 	private boolean validation(String action) {
 		switch(action) {
 		case "add":
@@ -841,6 +876,9 @@ public class DalinimosiAnketa {
 		}
 	}
 	
+	/*
+	 *  Extra methods
+	 */
 	private void showAlert(Alert.AlertType alerType, Window owner, String title, String message){
 		Alert alert = new Alert(alerType);
 		alert.setTitle(title);
